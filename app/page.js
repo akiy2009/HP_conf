@@ -1,7 +1,8 @@
-import { getAllNewsMetaSorted } from '@/lib/news';
+import { getAllNews } from '@/lib/news';
+import Link from 'next/link';
 
-export default function HomePage() {
-  const news = getAllNewsMetaSorted();
+export default function Home() {
+  const newsList = getAllNews();
 
   return (
     <main>
@@ -42,8 +43,8 @@ export default function HomePage() {
       </section>
 
       {/* 参加 */}
-      <section id="entry" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6 text-center">
+      <section id="entry" className="py-20 bg-gray-50 text-center">
+        <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-6 text-gray-900">参加申し込み</h2>
           <p className="mb-6 text-gray-700">現在フォームを準備中です。</p>
           <a href="https://example.com/form" className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-indigo-700">
@@ -52,26 +53,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* お知らせ一覧 */}
+      {/* お知らせ */}
       <section id="news" className="py-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-10 text-gray-900">お知らせ</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {news.map(item => (
-              <a key={item.slug} href={`/news/${item.slug}`} className="bg-white shadow p-4 rounded-lg hover:shadow-md transition">
-                <h3 className="text-lg font-bold text-indigo-600">{item.title}</h3>
-                <p className="text-sm text-gray-500">
-                  {new Date(item.date).toLocaleDateString()} — {item.description}
-                </p>
-              </a>
+          <div className="grid md:grid-cols-2 gap-6">
+            {newsList.map(news => (
+              <div key={news.slug} className="bg-white shadow p-4 rounded-lg">
+                <img src={news.image} alt={news.title} className="w-full h-48 object-cover rounded-lg mb-4"/>
+                <h3 className="text-lg font-bold text-indigo-600">{news.title}</h3>
+                <p className="text-sm text-gray-500">{news.date?.toLocaleDateString()} - {news.description}</p>
+                <div className="mt-2">
+                  {news.tags.map(tag => (
+                    <span key={tag} className="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-2">{tag}</span>
+                  ))}
+                </div>
+                <Link href={`/news/${news.slug}`} className="text-indigo-600 hover:underline mt-2 inline-block">続きを読む →</Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* お問い合わせ */}
-      <section id="contact" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6 text-center">
+      <section id="contact" className="py-20 bg-gray-50 text-center">
+        <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-6 text-gray-900">お問い合わせ</h2>
           <p className="mb-6 text-gray-700">ご質問などは、下記のお問い合わせフォームへご連絡ください。</p>
           <a href="https://wirelessconf.com/script/mailform/mail" className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-indigo-700">
