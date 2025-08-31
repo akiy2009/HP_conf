@@ -1,4 +1,4 @@
-iimport Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { readNewsBySlug, getAllNewsSlugs, getPrevNext } from '@/lib/news';
 import { remark } from 'remark';
