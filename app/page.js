@@ -1,4 +1,4 @@
-import { getAllNews } from '@/lib/news';
+import getAllNews from '@/lib/news';
 import Link from 'next/link';
 
 export default function Home() {
