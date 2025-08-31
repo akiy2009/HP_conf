@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 文章本文の可読性向上 */
+.prose a { text-decoration: underline; }
