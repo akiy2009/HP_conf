@@ -1,5 +1,6 @@
-import getAllNews from '@/lib/news';
+import {getAllNews} from '@/lib/news';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   const newsList = getAllNews();
